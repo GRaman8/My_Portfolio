@@ -55,7 +55,7 @@ ADMIN_PASSWORD="your-strong-password-here"
 # From Resend dashboard (or leave as placeholder if skipping email for now)
 RESEND_API_KEY="re_your_key_here"
 RESEND_FROM_EMAIL="onboarding@resend.dev"
-CONTACT_TO_EMAIL="ganapathiramanaz1@gmail.com"
+CONTACT_TO_EMAIL="youremail@hotmail.com"
 ```
 
 ### Step 2: Push the database schema
