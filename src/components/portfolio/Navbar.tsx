@@ -37,7 +37,7 @@ export default function Navbar({ resumeUrl }: NavbarProps) {
     >
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#hero" className="text-sm font-semibold text-foreground tracking-tight">
-          Sabari.dev
+          Ganapathi
         </a>
 
         <ul className="hidden md:flex items-center gap-6">

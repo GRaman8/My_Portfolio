@@ -1,5 +1,3 @@
-@AGENTS.md
-
 # Portfolio Project — Context for Claude
 
 ## What this project is
@@ -35,6 +33,26 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 - `@hookform/resolvers` v5 changed resolver types — use `as unknown as Resolver<FormData>` cast when types mismatch
 - Do NOT use `.default()` in zod schemas for form fields — provide defaults in `useForm({ defaultValues: ... })` instead
 - Use `Controller` for custom inputs (Select, Switch, TechStackInput, BulletListEditor, ImageUpload)
+- For optional URL/email fields, use `z.union([z.string().url(), z.literal("")]).optional()` — NOT the old `.optional().or(z.literal(""))` chain which can fail on empty strings
+
+### Null vs empty string in form resets
+- Prisma returns `null` for unset optional fields; Zod schemas only accept `string | "" | undefined`
+- Always convert null to `""` when calling `reset()` in admin forms:
+  ```ts
+  reset({ ...data, imageUrl: data.imageUrl ?? "", githubUrl: data.githubUrl ?? "" })
+  ```
+- Already applied in: profile/page.tsx, projects/[id]/page.tsx, skills/[id]/page.tsx
+
+### Admin route group (IMPORTANT)
+- Admin login page lives at `src/app/admin/login/page.tsx` — OUTSIDE the `(protected)` group
+- All other admin pages are in `src/app/admin/(protected)/` with their own layout
+- This prevents the infinite redirect loop: `(protected)/layout.tsx` checks session and redirects to `/admin/login`, but since login is outside the group it has no layout and can't loop
+- The middleware uses `withAuth({ pages: { signIn: "/admin/login" } })` and matcher `["/admin/((?!login$).*)", "/api/admin/:path*"]`
+
+### External URLs in components
+- Use `<a href={externalUrl} target="_blank">` for ALL external links — never `<Link href={externalUrl}>`
+- Next.js `<Link>` is for internal navigation only; passing an external URL throws "illegal path"
+- Hash-only anchors (`#hero`) must also use `<a>`, not `<Link>`
 
 ### Image upload
 - `/api/upload` writes to `public/images/` — works in dev only
@@ -42,7 +60,11 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 - Future improvement: migrate to `@vercel/blob`
 
 ### Next.js dynamic pages
-- `src/app/page.tsx` and `src/app/admin/dashboard/page.tsx` have `export const dynamic = "force-dynamic"` — this is intentional, they fetch from DB
+- `src/app/page.tsx` and `src/app/admin/(protected)/dashboard/page.tsx` have `export const dynamic = "force-dynamic"` — intentional, they fetch from DB
+
+### Environment variables
+- Use single quotes for values containing `$` in `.env` (e.g., `ADMIN_PASSWORD='pass$word'`)
+- Double-quoted values with `$` get shell-expanded by dotenv, truncating the value
 
 ## Project structure
 
@@ -50,17 +72,18 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 src/
   app/
     page.tsx                    ← Public portfolio (Server Component)
-    layout.tsx                  ← Root layout, Geist font, dark class
+    layout.tsx                  ← Root layout, Geist font, theme script
     admin/
-      layout.tsx                ← Auth check + admin shell
-      login/page.tsx
-      dashboard/page.tsx
-      profile/page.tsx
-      projects/page.tsx + [id]/page.tsx
-      experience/page.tsx + [id]/page.tsx
-      education/page.tsx + [id]/page.tsx
-      skills/page.tsx + [id]/page.tsx
-      messages/page.tsx
+      login/page.tsx            ← NOT inside (protected) — no layout wraps it
+      (protected)/              ← Route group — all pages here require session
+        layout.tsx              ← Auth check + admin shell
+        dashboard/page.tsx
+        profile/page.tsx
+        projects/page.tsx + [id]/page.tsx
+        experience/page.tsx + [id]/page.tsx
+        education/page.tsx + [id]/page.tsx
+        skills/page.tsx + [id]/page.tsx
+        messages/page.tsx
     api/
       auth/[...nextauth]/route.ts
       contact/route.ts          ← Public, rate-limited
@@ -79,6 +102,7 @@ src/
                                    ConfirmDialog, BulletListEditor,
                                    TechStackInput, ImageUpload
     ui/                         ← shadcn/ui components
+    ThemeToggle.tsx             ← Light/dark toggle (no next-themes dependency)
   lib/
     prisma.ts                   ← Prisma singleton with pg adapter
     auth.ts                     ← NextAuth options
@@ -90,8 +114,22 @@ prisma/
   schema.prisma                 ← 6 models: Profile, Project, Experience,
                                    Education, Skill, ContactMessage
   seed.ts                       ← Demo data
-middleware.ts                   ← NextAuth route guard for /admin/*
+middleware.ts                   ← NextAuth withAuth guard for /admin/*
 ```
+
+## Public section order
+
+Hero → About → Skills → Education → Experience → Projects → Contact
+
+## Theme system
+
+- Default: light mode (white background)
+- Toggle: Sun/Moon button in Navbar, implemented in `src/components/ThemeToggle.tsx`
+- Persistence: `localStorage` key `"theme"`, anti-FOUC inline script in `layout.tsx`
+- Dark class applied to `<html>` via JS, NOT hardcoded
+- `antialiased` font smoothing applied in dark mode only (improves light mode readability)
+- Base font size: `106.25%` (≈17px) for better readability
+- Violet primary in both modes: dark `oklch(0.606 0.25 293)`, light `oklch(0.55 0.25 293)`
 
 ## NPM scripts
 
@@ -111,18 +149,19 @@ All in `.env` (gitignored):
 DATABASE_URL=           # Neon pooled connection string
 NEXTAUTH_URL=           # http://localhost:3000 (dev) / https://domain.com (prod)
 NEXTAUTH_SECRET=        # openssl rand -base64 32
-ADMIN_PASSWORD=         # admin panel password
+ADMIN_PASSWORD=         # admin panel password (use single quotes if it contains $)
 RESEND_API_KEY=         # from resend.com
-RESEND_FROM_EMAIL=      # sender address
+RESEND_FROM_EMAIL=      # sender address (onboarding@resend.dev works for dev)
 CONTACT_TO_EMAIL=       # ganapathiramanaz1@gmail.com
 ```
 
 ## Design
 
-- Dark bg: `oklch(0.08 0 0)` (~#0a0a0a)
-- Primary/accent: violet `oklch(0.606 0.25 293)`
+- Light bg: `oklch(1 0 0)` (white), Dark bg: `oklch(0.08 0 0)` (~#0a0a0a)
+- Primary/accent: violet — light: `oklch(0.55 0.25 293)`, dark: `oklch(0.606 0.25 293)`
 - Font: Geist Sans / Geist Mono (via `next/font/google`)
-- Theme tokens are CSS variables in `src/app/globals.css`, forced dark mode via `dark` class on `<html>`
+- Muted foreground (light mode): `oklch(0.40 0 0)` — darker than shadcn default for readability
+- Theme tokens are CSS variables in `src/app/globals.css`
 
 ## API response convention
 
@@ -130,9 +169,9 @@ All admin API routes return `{ data: T }` on success and `{ error: string | ZodF
 
 ## Auth pattern
 
-- Edge middleware (`middleware.ts`) blocks `/admin/*` and `/api/admin/*` for unauthenticated requests
+- Edge middleware (`middleware.ts`) — `withAuth({ pages: { signIn: "/admin/login" } })` blocks `/admin/(not login)` and `/api/admin/*`
 - Each API route also calls `getServerSession(authOptions)` as a belt-and-suspenders check
-- Server Components in `/admin` call `getServerSession(authOptions)` directly
+- Server Components in `(protected)` call `getServerSession(authOptions)` directly
 - Client Components use `useSession()` from `next-auth/react` (wrapped by `SessionWrapper` in admin layout)
 
 ## See also
