@@ -42,7 +42,7 @@ export default function ProfilePage() {
             email: data.email ?? "",
             githubUrl: data.githubUrl ?? "",
             linkedinUrl: data.linkedinUrl ?? "",
-            twitterUrl: data.twitterUrl ?? "",
+            leetcodeUrl: data.leetcodeUrl ?? "",
             websiteUrl: data.websiteUrl ?? "",
           });
         }
@@ -107,7 +107,7 @@ export default function ProfilePage() {
           <p className="text-sm font-medium text-muted-foreground">Social Links</p>
 
           <div className="grid grid-cols-2 gap-4">
-            {(["email", "githubUrl", "linkedinUrl", "twitterUrl", "websiteUrl"] as const).map(
+            {(["email", "githubUrl", "linkedinUrl", "leetcodeUrl", "websiteUrl"] as const).map(
               (field) => (
                 <div key={field} className="space-y-1.5">
                   <Label htmlFor={field}>

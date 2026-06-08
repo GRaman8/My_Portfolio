@@ -1,15 +1,16 @@
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, } from "react-icons/fa6";
+import { TbBrandLeetcode } from "react-icons/tb"
 import { Mail } from "lucide-react";
 
 interface FooterProps {
   name: string;
   githubUrl?: string | null;
   linkedinUrl?: string | null;
-  twitterUrl?: string | null;
+  leetcodeUrl?: string | null;
   email?: string | null;
 }
 
-export default function Footer({ name, githubUrl, linkedinUrl, twitterUrl, email }: FooterProps) {
+export default function Footer({ name, githubUrl, linkedinUrl, leetcodeUrl, email }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -29,9 +30,9 @@ export default function Footer({ name, githubUrl, linkedinUrl, twitterUrl, email
               <FaLinkedin className="w-4 h-4" />
             </a>
           )}
-          {twitterUrl && (
-            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <FaXTwitter className="w-4 h-4" />
+          {leetcodeUrl && (
+            <a href={leetcodeUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <TbBrandLeetcode className="w-4 h-4" />
             </a>
           )}
           {email && (

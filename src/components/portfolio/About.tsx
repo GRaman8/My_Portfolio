@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, } from "react-icons/fa6";
+import { TbBrandLeetcode } from "react-icons/tb"
 import { Mail, MapPin } from "lucide-react";
 
 interface AboutProps {
@@ -9,11 +10,11 @@ interface AboutProps {
   location?: string | null;
   githubUrl?: string | null;
   linkedinUrl?: string | null;
-  twitterUrl?: string | null;
+  leetcodeUrl?: string | null;
   email?: string | null;
 }
 
-export default function About({ bio, location, githubUrl, linkedinUrl, twitterUrl, email }: AboutProps) {
+export default function About({ bio, location, githubUrl, linkedinUrl, leetcodeUrl, email }: AboutProps) {
   return (
     <section id="about" className="px-6 py-24">
       <div className="max-w-5xl mx-auto">
@@ -48,9 +49,9 @@ export default function About({ bio, location, githubUrl, linkedinUrl, twitterUr
                     <FaLinkedin className="w-4 h-4" /> LinkedIn
                   </a>
                 )}
-                {twitterUrl && (
-                  <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    <FaXTwitter className="w-4 h-4" /> Twitter
+                {leetcodeUrl && (
+                  <a href={leetcodeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <TbBrandLeetcode className="w-4 h-4" /> LeetCode
                   </a>
                 )}
                 {email && (

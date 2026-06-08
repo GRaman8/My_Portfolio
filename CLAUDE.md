@@ -14,7 +14,7 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 - **NextAuth v4** — Credentials provider only, single `ADMIN_PASSWORD` env var, JWT session
 - **Resend** — transactional email for contact form
 - **framer-motion v12** — animations
-- **react-icons** (fa6) — social brand icons (lucide-react v1 removed Github/Linkedin/Twitter)
+- **react-icons** (fa6) — social brand icons (lucide-react v1 removed Github/Linkedin/leetcode)
 
 ## Critical gotchas
 

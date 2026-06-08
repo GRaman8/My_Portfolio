@@ -13,7 +13,7 @@ export const profileSchema = z.object({
   email: optionalEmail,
   githubUrl: optionalUrl,
   linkedinUrl: optionalUrl,
-  twitterUrl: optionalUrl,
+  leetcodeUrl: optionalUrl,
   websiteUrl: optionalUrl,
 });
 

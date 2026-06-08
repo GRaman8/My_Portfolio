@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, } from "react-icons/fa6";
+import { TbBrandLeetcode } from "react-icons/tb"
 import { Mail } from "lucide-react";
 
 interface HeroProps {
@@ -14,7 +15,7 @@ interface HeroProps {
   avatarUrl?: string | null;
   githubUrl?: string | null;
   linkedinUrl?: string | null;
-  twitterUrl?: string | null;
+  leetcodeUrl?: string | null;
   email?: string | null;
 }
 
@@ -35,7 +36,7 @@ export default function Hero({
   avatarUrl,
   githubUrl,
   linkedinUrl,
-  twitterUrl,
+  leetcodeUrl,
   email,
 }: HeroProps) {
   return (
@@ -94,9 +95,9 @@ export default function Hero({
                   <FaLinkedin className="w-5 h-5" />
                 </a>
               )}
-              {twitterUrl && (
-                <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                  <FaXTwitter className="w-5 h-5" />
+              {leetcodeUrl && (
+                <a href={leetcodeUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <TbBrandLeetcode className="w-5 h-5" />
                 </a>
               )}
               {email && (

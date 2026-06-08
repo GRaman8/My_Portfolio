@@ -22,7 +22,7 @@ async function main() {
       location: "United States",
       githubUrl: "https://github.com",
       linkedinUrl: "https://linkedin.com",
-      twitterUrl: "https://twitter.com",
+      leetcodeUrl: "https://leetcode.com",
     },
   });
 
