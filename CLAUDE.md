@@ -152,7 +152,7 @@ NEXTAUTH_SECRET=        # openssl rand -base64 32
 ADMIN_PASSWORD=         # admin panel password (use single quotes if it contains $)
 RESEND_API_KEY=         # from resend.com
 RESEND_FROM_EMAIL=      # sender address (onboarding@resend.dev works for dev)
-CONTACT_TO_EMAIL=       # ganapathiramanaz1@gmail.com
+CONTACT_TO_EMAIL=       # saitharunaditya08@gmail.com
 ```
 
 ## Design

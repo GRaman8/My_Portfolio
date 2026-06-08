@@ -195,7 +195,7 @@ git push -u origin main
 | `ADMIN_PASSWORD` | Your admin password |
 | `RESEND_API_KEY` | Your Resend key |
 | `RESEND_FROM_EMAIL` | Your from email |
-| `CONTACT_TO_EMAIL` | `ganapathiramanaz1@gmail.com` |
+| `CONTACT_TO_EMAIL` | `saitarunaditya08@gmail.com` |
 
 5. Click **Deploy**
 

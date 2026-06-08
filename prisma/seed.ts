@@ -16,7 +16,7 @@ async function main() {
 
   await prisma.profile.create({
     data: {
-      name: "Ganapathi Raman Deivanayagam",
+      name: "Sai Tharun Aditya",
       headline: "Full-Stack Developer",
       bio: "I build scalable web applications with a focus on clean code and great user experience.\n\nPassionate about the full stack — from designing databases to crafting smooth UIs. When I'm not coding, I'm exploring new technologies and contributing to open source.",
       location: "United States",

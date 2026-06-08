@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ganapathi | Software Engineer",
+  title: "Sai Tharun Aditya | Software Engineer",
   description: "Software Engineer portfolio",
 };
 
