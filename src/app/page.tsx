@@ -65,6 +65,7 @@ export default async function PortfolioPage() {
         name={profile.name}
         githubUrl={profile.githubUrl}
         linkedinUrl={profile.linkedinUrl}
+        leetcodeUrl={profile.leetcodeUrl}
         email={profile.email}
       />
     </>
