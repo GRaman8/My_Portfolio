@@ -8,16 +8,18 @@ import Projects from "@/components/portfolio/Projects";
 import Experience from "@/components/portfolio/Experience";
 import Education from "@/components/portfolio/Education";
 import Skills from "@/components/portfolio/Skills";
+import Certifications from "@/components/portfolio/Certifications";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
 export default async function PortfolioPage() {
-  const [profile, projects, experiences, educations, skills] = await Promise.all([
+  const [profile, projects, experiences, educations, skills, certifications] = await Promise.all([
     prisma.profile.findFirst(),
     prisma.project.findMany({ orderBy: { order: "asc" } }),
     prisma.experience.findMany({ orderBy: { order: "asc" } }),
     prisma.education.findMany({ orderBy: { order: "asc" } }),
     prisma.skill.findMany({ orderBy: [{ category: "asc" }, { order: "asc" }] }),
+    prisma.certification.findMany({ orderBy: { order: "asc" } }),
   ]);
 
   if (!profile) {
@@ -57,6 +59,7 @@ export default async function PortfolioPage() {
         />
         <Skills skills={skills} />
         <Education educations={educations} />
+        <Certifications certifications={certifications} />
         <Experience experiences={experiences} />
         <Projects projects={projects} />
         <Contact />

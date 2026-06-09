@@ -78,3 +78,16 @@ model ContactMessage {
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model Certification {
+  id            String    @id @default(cuid())
+  title         String
+  provider      String
+  issuedDate    DateTime?
+  expiresDate   DateTime?
+  credentialId  String?
+  credentialUrl String?
+  imageUrl      String?
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+}

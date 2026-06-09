@@ -41,7 +41,7 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
   ```ts
   reset({ ...data, imageUrl: data.imageUrl ?? "", githubUrl: data.githubUrl ?? "" })
   ```
-- Already applied in: profile/page.tsx, projects/[id]/page.tsx, skills/[id]/page.tsx
+- Already applied in: profile/page.tsx, projects/[id]/page.tsx, skills/[id]/page.tsx, certifications/[id]/page.tsx
 
 ### Admin route group (IMPORTANT)
 - Admin login page lives at `src/app/admin/login/page.tsx` — OUTSIDE the `(protected)` group
@@ -82,6 +82,7 @@ src/
         projects/page.tsx + [id]/page.tsx
         experience/page.tsx + [id]/page.tsx
         education/page.tsx + [id]/page.tsx
+        certifications/page.tsx + [id]/page.tsx
         skills/page.tsx + [id]/page.tsx
         messages/page.tsx
     api/
@@ -92,12 +93,13 @@ src/
       admin/projects/route.ts + [id]/route.ts + reorder/route.ts
       admin/experience/route.ts + [id]/route.ts
       admin/education/route.ts + [id]/route.ts
+      admin/certifications/route.ts + [id]/route.ts
       admin/skills/route.ts + [id]/route.ts
       admin/messages/route.ts + [id]/route.ts
   components/
     portfolio/                  ← Navbar, Hero, About, Projects, ProjectCard,
-                                   Experience, Education, Skills, Contact,
-                                   ContactForm, Footer
+                                   Experience, Education, Certifications,
+                                   Skills, Contact, ContactForm, Footer
     admin/                      ← AdminSidebar, AdminHeader, SessionWrapper,
                                    ConfirmDialog, BulletListEditor,
                                    TechStackInput, ImageUpload
@@ -109,17 +111,17 @@ src/
     resend.ts                   ← Resend client
     utils.ts                    ← cn(), formatDateRange(), formatDate(), buttonVariants re-export
     validations/                ← Zod schemas (profile, project, experience,
-                                   education, skill, contact)
+                                   education, certification, skill, contact)
 prisma/
-  schema.prisma                 ← 6 models: Profile, Project, Experience,
-                                   Education, Skill, ContactMessage
+  schema.prisma                 ← 7 models: Profile, Project, Experience,
+                                   Education, Certification, Skill, ContactMessage
   seed.ts                       ← Demo data
 middleware.ts                   ← NextAuth withAuth guard for /admin/*
 ```
 
 ## Public section order
 
-Hero → About → Skills → Education → Experience → Projects → Contact
+Hero → About → Skills → Education → Certifications → Experience → Projects → Contact
 
 ## Theme system
 
