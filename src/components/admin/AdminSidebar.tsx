@@ -9,6 +9,7 @@ import {
   Briefcase,
   GraduationCap,
   Code2,
+  Award,
   MessageSquare,
   ExternalLink,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/admin/projects", label: "Projects", icon: FolderGit2 },
   { href: "/admin/experience", label: "Experience", icon: Briefcase },
   { href: "/admin/education", label: "Education", icon: GraduationCap },
+  { href: "/admin/certifications", label: "Certifications", icon: Award },
   { href: "/admin/skills", label: "Skills", icon: Code2 },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
 ];

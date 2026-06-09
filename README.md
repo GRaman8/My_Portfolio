@@ -6,7 +6,7 @@ A full-stack developer portfolio with a built-in CMS admin panel. The public sit
 
 **Public portfolio**
 - Hero section with avatar, headline, and social links
-- About, Skills, Education, Experience, Projects, and Contact sections
+- About, Skills, Education, Certifications, Experience, Projects, and Contact sections
 - Smooth-scroll navigation with light/dark mode toggle
 - Contact form with email notifications
 - Fully responsive (mobile + desktop)
@@ -112,6 +112,7 @@ src/
         projects/page.tsx + [id]/page.tsx
         experience/page.tsx + [id]/page.tsx
         education/page.tsx + [id]/page.tsx
+        certifications/page.tsx + [id]/page.tsx
         skills/page.tsx + [id]/page.tsx
         messages/page.tsx
     api/
@@ -128,7 +129,7 @@ src/
     utils.ts                    ← cn(), formatDate(), buttonVariants
     validations/                ← Zod schemas shared by client + server
 prisma/
-  schema.prisma                 ← 6 models
+  schema.prisma                 ← 7 models
   seed.ts                       ← Demo data
 middleware.ts                   ← Route protection for /admin
 ```
@@ -151,8 +152,9 @@ Everything is driven from the admin panel at `/admin`. Suggested order for filli
 1. **Profile** — name, headline, bio, avatar URL, social links, resume URL
 2. **Experience** — jobs, most recent first (`order: 0` = top)
 3. **Education** — degrees and institutions
-4. **Skills** — add each skill with a category; use [Simple Icons CDN](https://cdn.simpleicons.org/) for icon URLs
-5. **Projects** — tick "Featured" for the ones shown first
+4. **Certifications** — add each cert with provider, dates, a credential/PDF URL, and an optional badge image; section is hidden until at least one entry exists
+5. **Skills** — add each skill with a category; use [Simple Icons CDN](https://cdn.simpleicons.org/) for icon URLs
+6. **Projects** — tick "Featured" for the ones shown first
 
 ## License
 
