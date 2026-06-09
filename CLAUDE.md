@@ -41,6 +41,7 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
   ```ts
   reset({ ...data, imageUrl: data.imageUrl ?? "", githubUrl: data.githubUrl ?? "" })
   ```
+- Profile has `firstName`/`lastName` (not `name`) — public page combines them: `` `${profile.firstName} ${profile.lastName}` ``
 - Already applied in: profile/page.tsx, projects/[id]/page.tsx, skills/[id]/page.tsx, certifications/[id]/page.tsx
 
 ### Admin route group (IMPORTANT)
@@ -113,8 +114,9 @@ src/
     validations/                ← Zod schemas (profile, project, experience,
                                    education, certification, skill, contact)
 prisma/
-  schema.prisma                 ← 7 models: Profile, Project, Experience,
-                                   Education, Certification, Skill, ContactMessage
+  schema.prisma                 ← 7 models: Profile (firstName/lastName),
+                                   Project, Experience, Education,
+                                   Certification, Skill, ContactMessage
   seed.ts                       ← Demo data
 middleware.ts                   ← NextAuth withAuth guard for /admin/*
 ```

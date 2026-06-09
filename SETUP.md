@@ -60,7 +60,7 @@ CONTACT_TO_EMAIL="youremail@hotmail.com"
 
 ### Step 2: Push the database schema
 
-This creates all 6 tables in Neon. Run it once when setting up, and again any time you change `prisma/schema.prisma`:
+This creates all 7 tables in Neon. Run it once when setting up, and again any time you change `prisma/schema.prisma`:
 
 ```bash
 npm run db:push
@@ -119,7 +119,7 @@ W -> working
 ### Public portfolio
 
 - [W] Home page loads without errors (check browser console for red errors)
-- [W] All sections render: Hero, About, Projects, Experience, Education, Skills, Contact
+- [W] All sections render: Hero, About, Skills, Education, Certifications, Experience, Projects, Contact
 - [W] Navbar smooth-scrolls to sections when clicking links
 - [W] Mobile layout works — open DevTools → toggle device toolbar → check at 375px width
 - [W] Hero animations play on first load (fade-up stagger)
@@ -142,7 +142,7 @@ W -> working
 
 ### Admin panel — CRUD
 
-For each section (Profile, Projects, Experience, Education, Skills):
+For each section (Profile, Projects, Experience, Education, Certifications, Skills):
 
 - [W] **Create**: Click "New", fill in the form, save — item appears in the list
 - [W] **Edit**: Click the pencil icon, change a value, save — change reflects on the list
@@ -238,18 +238,19 @@ In Vercel dashboard → your project → **Domains** → Add domain. Then:
 
 Log in at `/admin/login` and fill in everything. Suggested order:
 
-1. **Profile** — your name, headline, bio, avatar URL, social links, resume URL
+1. **Profile** — first name, last name, headline, bio, avatar URL, social links, resume URL
 2. **Experience** — past and current jobs (most recent first, use the `order` field: 0 = top)
 3. **Education** — degrees and institutions
-4. **Skills** — add each skill with a category. Use [Simple Icons CDN](https://cdn.simpleicons.org/) for icon URLs:
+4. **Certifications** — add each certification with provider, issued/expiry dates, a credential URL (Credly, LinkedIn, or PDF link), and an optional badge image; the section is hidden from the public site until at least one entry is added
+5. **Skills** — add each skill with a category. Use [Simple Icons CDN](https://cdn.simpleicons.org/) for icon URLs:
    - Example: `https://cdn.simpleicons.org/typescript` for TypeScript
    - Browse icons at [simpleicons.org](https://simpleicons.org)
-5. **Projects** — your real projects. Check "Featured" for the ones you want shown first
+6. **Projects** — your real projects. Check "Featured" for the ones you want shown first
 
 ### Tips
 
 - **Images**: Paste a direct image URL (from GitHub, LinkedIn, or upload to Imgur) — no need to upload files in production
-- **Resume**: Upload your PDF to Google Drive, set sharing to "Anyone with link can view", and paste the direct download link
+- **Resume**: Host your PDF on GitHub (push the file to a public repo and use the raw URL: `https://raw.githubusercontent.com/username/repo/main/resume.pdf`) or any direct-download URL — Google Drive sharing links (`/view?usp=sharing`) are viewer pages, not direct links, and won't work as a download
 - **Order field**: Lower number = appears first on the portfolio. `0` is the top item
 - **Bio formatting**: Use two newlines between paragraphs — they'll render as separate paragraphs on the About section
 

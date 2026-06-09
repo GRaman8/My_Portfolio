@@ -149,7 +149,7 @@ See [SETUP.md](./SETUP.md) for the full deployment walkthrough. The short versio
 
 Everything is driven from the admin panel at `/admin`. Suggested order for filling in content:
 
-1. **Profile** — name, headline, bio, avatar URL, social links, resume URL
+1. **Profile** — first name, last name, headline, bio, avatar URL, social links, resume URL
 2. **Experience** — jobs, most recent first (`order: 0` = top)
 3. **Education** — degrees and institutions
 4. **Certifications** — add each cert with provider, dates, a credential/PDF URL, and an optional badge image; section is hidden until at least one entry exists
