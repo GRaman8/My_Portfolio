@@ -33,7 +33,8 @@ export default function ProfilePage() {
       .then(({ data }) => {
         if (data) {
           reset({
-            name: data.name ?? "",
+            firstName: data.firstName ?? "",
+            lastName: data.lastName ?? "",
             headline: data.headline ?? "",
             bio: data.bio ?? "",
             avatarUrl: data.avatarUrl ?? "",
@@ -68,16 +69,21 @@ export default function ProfilePage() {
       <AdminHeader title="Profile" />
       <main className="flex-1 p-6 max-w-2xl">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="name">Name *</Label>
-              <Input id="name" {...register("name")} />
-              {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
-            </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="location">Location</Label>
-              <Input id="location" {...register("location")} placeholder="City, Country" />
-            </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="firstName">First Name *</Label>
+            <Input id="firstName" {...register("firstName")} placeholder="Ganapathi" />
+            {errors.firstName && <p className="text-xs text-destructive">{errors.firstName.message}</p>}
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="lastName">Last Name *</Label>
+            <Input id="lastName" {...register("lastName")} placeholder="Raman" />
+            {errors.lastName && <p className="text-xs text-destructive">{errors.lastName.message}</p>}
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="location">Location</Label>
+            <Input id="location" {...register("location")} placeholder="City, Country" />
           </div>
 
           <div className="space-y-1.5">

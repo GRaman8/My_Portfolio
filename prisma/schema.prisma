@@ -9,7 +9,8 @@ datasource db {
 
 model Profile {
   id          String   @id @default(cuid())
-  name        String
+  firstName   String
+  lastName    String
   headline    String
   bio         String   @db.Text
   avatarUrl   String?

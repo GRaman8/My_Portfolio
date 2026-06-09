@@ -40,7 +40,7 @@ export default async function PortfolioPage() {
       <Navbar resumeUrl={profile.resumeUrl} />
       <main>
         <Hero
-          name={profile.name}
+          name={`${profile.firstName} ${profile.lastName}`}
           headline={profile.headline}
           bio={profile.bio}
           avatarUrl={profile.avatarUrl}
@@ -65,7 +65,7 @@ export default async function PortfolioPage() {
         <Contact />
       </main>
       <Footer
-        name={profile.name}
+        name={`${profile.firstName} ${profile.lastName}`}
         githubUrl={profile.githubUrl}
         linkedinUrl={profile.linkedinUrl}
         twitterUrl={profile.twitterUrl}

@@ -4,7 +4,8 @@ const optionalUrl = z.union([z.string().url("Must be a valid URL"), z.literal(""
 const optionalEmail = z.union([z.string().email("Must be a valid email"), z.literal("")]).optional();
 
 export const profileSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
   headline: z.string().min(1, "Headline is required"),
   bio: z.string().min(1, "Bio is required"),
   avatarUrl: optionalUrl,
