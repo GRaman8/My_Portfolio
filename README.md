@@ -8,6 +8,8 @@ A full-stack developer portfolio with a built-in CMS admin panel. The public sit
 - Hero section with avatar, headline, and social links
 - About, Skills, Education, Certifications, Experience, Projects, and Contact sections
 - Smooth-scroll navigation with light/dark mode toggle
+- Language switcher — English, German, Spanish, Tamil (UI strings; cookie-persisted, no URL change)
+- Subtle animated constellation background (theme-aware, respects reduced-motion)
 - Contact form with email notifications
 - Fully responsive (mobile + desktop)
 
@@ -28,6 +30,7 @@ A full-stack developer portfolio with a built-in CMS admin panel. The public sit
 | ORM | Prisma 7 with `@prisma/adapter-pg` |
 | Auth | NextAuth.js v4 (Credentials, JWT) |
 | Email | [Resend](https://resend.com) |
+| i18n | [next-intl](https://next-intl.dev) v4 (cookie mode, no routing) |
 | Animations | framer-motion v12 |
 | Deployment | Vercel |
 
@@ -155,6 +158,14 @@ Everything is driven from the admin panel at `/admin`. Suggested order for filli
 4. **Certifications** — add each cert with provider, dates, a credential/PDF URL, and an optional badge image; section is hidden until at least one entry exists
 5. **Skills** — add each skill with a category; use [Simple Icons CDN](https://cdn.simpleicons.org/) for icon URLs
 6. **Projects** — tick "Featured" for the ones shown first
+
+## Internationalization
+
+UI strings are translated via [next-intl](https://next-intl.dev) in cookie mode (no `[locale]` URL segment). The active language is stored in the `NEXT_LOCALE` cookie and the page is server-rendered in that language, so there is no flash.
+
+- **Add/edit translations:** the message catalogs live in `messages/{en,de,es,ta}.json`. All catalogs must share the same keys.
+- **Add a language:** add the locale to `src/i18n/config.ts` and create a matching `messages/<locale>.json`.
+- **Scope:** the language switcher currently translates fixed UI strings (nav, headings, buttons, form labels). Database-authored content (bio, project/experience descriptions) renders in the language it was written in. Machine-translating that content is a planned future phase (would use Google Cloud Translation, which supports Tamil; DeepL does not).
 
 ## License
 

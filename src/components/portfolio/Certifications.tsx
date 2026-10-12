@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { Award, ExternalLink, CalendarDays } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 
@@ -17,6 +18,8 @@ interface CertificationEntry {
 }
 
 export default function Certifications({ certifications }: { certifications: CertificationEntry[] }) {
+  const t = useTranslations("certifications");
+  const locale = useLocale();
   if (certifications.length === 0) return null;
 
   return (
@@ -29,8 +32,8 @@ export default function Certifications({ certifications }: { certifications: Cer
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">Credentials</p>
-          <h2 className="text-3xl font-bold">Certifications</h2>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
         </motion.div>
 
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -69,13 +72,13 @@ export default function Certifications({ certifications }: { certifications: Cer
                   <div className="flex items-center gap-1.5">
                     <CalendarDays className="w-3.5 h-3.5 shrink-0" />
                     <span>
-                      Issued {formatDate(cert.issuedDate)}
-                      {cert.expiresDate ? ` · Expires ${formatDate(cert.expiresDate)}` : " · No expiry"}
+                      {t("issued")} {formatDate(cert.issuedDate, locale)}
+                      {cert.expiresDate ? ` · ${t("expires")} ${formatDate(cert.expiresDate, locale)}` : ` · ${t("noExpiry")}`}
                     </span>
                   </div>
                 )}
                 {cert.credentialId && (
-                  <p className="font-mono text-[11px]">ID: {cert.credentialId}</p>
+                  <p className="font-mono text-[11px]">{t("id")}: {cert.credentialId}</p>
                 )}
               </div>
 
@@ -87,7 +90,7 @@ export default function Certifications({ certifications }: { certifications: Cer
                   className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline mt-auto"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
-                  View Credential
+                  {t("viewCredential")}
                 </a>
               )}
             </motion.li>

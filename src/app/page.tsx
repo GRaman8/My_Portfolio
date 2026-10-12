@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
+import BackgroundConstellation from "@/components/BackgroundConstellation";
 import Navbar from "@/components/portfolio/Navbar";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
@@ -37,6 +38,7 @@ export default async function PortfolioPage() {
 
   return (
     <>
+      <BackgroundConstellation />
       <Navbar resumeUrl={profile.resumeUrl} />
       <main>
         <Hero

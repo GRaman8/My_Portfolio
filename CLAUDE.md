@@ -15,6 +15,7 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 - **Resend** — transactional email for contact form
 - **framer-motion v12** — animations
 - **react-icons** (fa6) — social brand icons (lucide-react v1 removed Github/Linkedin/Twitter)
+- **next-intl v4** — i18n in cookie mode (no `[locale]` routing). UI strings only; DB content not yet translated.
 
 ## Critical gotchas
 
@@ -67,6 +68,19 @@ A full-stack developer portfolio website with a built-in CMS admin panel. The pu
 - Use single quotes for values containing `$` in `.env` (e.g., `ADMIN_PASSWORD='pass$word'`)
 - Double-quoted values with `$` get shell-expanded by dotenv, truncating the value
 
+### Internationalization (next-intl v4, cookie mode)
+- No `[locale]` URL routing — locale lives in the `NEXT_LOCALE` cookie. Config: `src/i18n/config.ts` (locales en/de/es/ta), `src/i18n/request.ts` (`getRequestConfig` reads the cookie), `src/i18n/actions.ts` (`setLocale` server action). Plugin wired in `next.config.ts`.
+- Message catalogs: `messages/{en,de,es,ta}.json` — all must share identical keys (49 currently). `LanguageSwitcher.tsx` sets the cookie + `router.refresh()`.
+- `layout.tsx` is async: `getLocale()`/`getMessages()`, `<html lang={locale}>`, wraps children in `<NextIntlClientProvider>`. Client components use `useTranslations("ns")`; server components (Footer) use `await getTranslations("ns")`.
+- Tamil: Geist lacks Tamil glyphs — `Noto_Sans_Tamil` loaded in layout, applied via `:lang(ta)` rule in `globals.css`.
+- Dates: `formatDate`/`formatDateRange` in `utils.ts` take optional `locale` + `presentLabel`; pass `useLocale()` and `t("dates.present")` from components.
+- Scope: UI strings only. DB-authored content is NOT translated (planned future phase — Google Cloud Translation, which supports Tamil; DeepL does not). Contact-form zod inline errors remain English.
+
+### Animated background
+- `src/components/BackgroundConstellation.tsx` (client, canvas) mounted in `page.tsx` (public site only, NOT root layout → keeps it off the admin CMS). `fixed inset-0 -z-10`.
+- For the `-z-10` canvas to show, base `bg-background` moved from `body` to `html` in `globals.css` (opaque body bg would paint over a negative-z child). Body is now transparent.
+- Red, theme-aware (reads `dark` class per frame); respects `prefers-reduced-motion` (static frame).
+
 ## Project structure
 
 ```
@@ -106,6 +120,12 @@ src/
                                    TechStackInput, ImageUpload
     ui/                         ← shadcn/ui components
     ThemeToggle.tsx             ← Light/dark toggle (no next-themes dependency)
+    LanguageSwitcher.tsx        ← Locale dropdown (next-intl, NEXT_LOCALE cookie)
+    BackgroundConstellation.tsx ← Animated red canvas background (public page only)
+  i18n/
+    config.ts                   ← locales (en/de/es/ta), defaultLocale, localeNames
+    request.ts                  ← getRequestConfig — reads NEXT_LOCALE cookie
+    actions.ts                  ← setLocale server action
   lib/
     prisma.ts                   ← Prisma singleton with pg adapter
     auth.ts                     ← NextAuth options
@@ -118,6 +138,7 @@ prisma/
                                    Project, Experience, Education,
                                    Certification, Skill, ContactMessage
   seed.ts                       ← Demo data
+messages/                       ← en.json, de.json, es.json, ta.json (i18n catalogs)
 middleware.ts                   ← NextAuth withAuth guard for /admin/*
 ```
 
@@ -133,7 +154,7 @@ Hero → About → Skills → Education → Certifications → Experience → Pr
 - Dark class applied to `<html>` via JS, NOT hardcoded
 - `antialiased` font smoothing applied in dark mode only (improves light mode readability)
 - Base font size: `106.25%` (≈17px) for better readability
-- Violet primary in both modes: dark `oklch(0.606 0.25 293)`, light `oklch(0.55 0.25 293)`
+- Red primary in both modes: dark `oklch(0.606 0.22 25)`, light `oklch(0.55 0.22 25)`
 
 ## NPM scripts
 
@@ -162,7 +183,7 @@ CONTACT_TO_EMAIL=       # ganapathiramanaz1@gmail.com
 ## Design
 
 - Light bg: `oklch(1 0 0)` (white), Dark bg: `oklch(0.08 0 0)` (~#0a0a0a)
-- Primary/accent: violet — light: `oklch(0.55 0.25 293)`, dark: `oklch(0.606 0.25 293)`
+- Primary/accent: red — light: `oklch(0.55 0.22 25)`, dark: `oklch(0.606 0.22 25)`
 - Font: Geist Sans / Geist Mono (via `next/font/google`)
 - Muted foreground (light mode): `oklch(0.40 0 0)` — darker than shadcn default for readability
 - Theme tokens are CSS variables in `src/app/globals.css`

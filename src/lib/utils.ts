@@ -10,21 +10,23 @@ export { buttonVariants } from "@/components/ui/button"
 export function formatDateRange(
   startDate: Date,
   endDate: Date | null,
-  current: boolean
+  current: boolean,
+  locale: string = "en-US",
+  presentLabel: string = "Present"
 ): string {
-  const start = startDate.toLocaleDateString("en-US", {
+  const start = startDate.toLocaleDateString(locale, {
     month: "short",
     year: "numeric",
   })
-  if (current) return `${start} — Present`
+  if (current) return `${start} — ${presentLabel}`
   if (!endDate) return start
-  const end = endDate.toLocaleDateString("en-US", {
+  const end = endDate.toLocaleDateString(locale, {
     month: "short",
     year: "numeric",
   })
   return `${start} — ${end}`
 }
 
-export function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+export function formatDate(date: Date, locale: string = "en-US"): string {
+  return date.toLocaleDateString(locale, { month: "short", year: "numeric" })
 }

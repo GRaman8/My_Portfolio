@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Tamil } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -13,20 +15,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoTamil = Noto_Sans_Tamil({
+  variable: "--font-noto-tamil",
+  subsets: ["tamil"],
+});
+
 export const metadata: Metadata = {
   title: "Ganapathi | Software Engineer",
   description: "Software Engineer portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      lang={locale}
+      className={`${geistSans.variable} ${geistMono.variable} ${notoTamil.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -36,9 +46,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground">
-        {children}
-        <Toaster />
+      <body className="min-h-screen text-foreground">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

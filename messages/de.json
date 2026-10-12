@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "skills": "Fähigkeiten",
+    "education": "Ausbildung",
+    "certifications": "Zertifikate",
+    "experience": "Erfahrung",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "resume": "Lebenslauf"
+  },
+  "hero": {
+    "greeting": "Hallo, ich bin",
+    "viewProjects": "Projekte ansehen",
+    "contactMe": "Kontakt aufnehmen"
+  },
+  "about": {
+    "eyebrow": "Über mich",
+    "email": "E-Mail"
+  },
+  "skills": {
+    "eyebrow": "Werkzeuge",
+    "title": "Fähigkeiten"
+  },
+  "education": {
+    "eyebrow": "Hintergrund",
+    "title": "Ausbildung",
+    "gpa": "Note"
+  },
+  "certifications": {
+    "eyebrow": "Qualifikationen",
+    "title": "Zertifikate",
+    "viewCredential": "Zertifikat ansehen",
+    "issued": "Ausgestellt",
+    "expires": "Läuft ab",
+    "noExpiry": "Kein Ablaufdatum",
+    "id": "ID"
+  },
+  "experience": {
+    "eyebrow": "Werdegang",
+    "title": "Erfahrung"
+  },
+  "projects": {
+    "eyebrow": "Arbeit",
+    "title": "Projekte",
+    "code": "Code",
+    "live": "Live"
+  },
+  "contact": {
+    "eyebrow": "Kontakt aufnehmen",
+    "title": "Kontakt",
+    "intro": "Haben Sie ein Projekt im Sinn oder möchten Sie sich austauschen? Ich freue mich auf Ihre Nachricht und melde mich so schnell wie möglich zurück.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "namePlaceholder": "Ihr Name",
+    "emailPlaceholder": "sie@beispiel.com",
+    "messagePlaceholder": "Was beschäftigt Sie?",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet…",
+    "success": "Nachricht gesendet! Ich melde mich bald zurück.",
+    "rateLimit": "Zu viele Nachrichten. Bitte später erneut versuchen.",
+    "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+  },
+  "footer": {
+    "builtWith": "Erstellt mit Next.js."
+  },
+  "dates": {
+    "present": "Heute"
+  },
+  "theme": {
+    "toggle": "Design umschalten"
+  },
+  "language": {
+    "label": "Sprache ändern"
+  }
+}

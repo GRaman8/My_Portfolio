@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
@@ -38,6 +39,7 @@ export default function Hero({
   twitterUrl,
   email,
 }: HeroProps) {
+  const t = useTranslations("hero");
   return (
     <section id="hero" className="min-h-screen flex items-center pt-16 px-6">
       <div className="max-w-5xl mx-auto w-full py-20">
@@ -63,7 +65,7 @@ export default function Hero({
 
           <div className="text-center md:text-left space-y-4">
             <motion.p variants={fadeUp} className="text-sm font-mono text-primary tracking-widest uppercase">
-              Hi, I&apos;m
+              {t("greeting")}
             </motion.p>
 
             <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
@@ -79,8 +81,8 @@ export default function Hero({
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex items-center gap-3 flex-wrap justify-center md:justify-start">
-              <a href="#projects" className={cn(buttonVariants())}>View Projects</a>
-              <a href="#contact" className={cn(buttonVariants({ variant: "outline" }))}>Contact Me</a>
+              <a href="#projects" className={cn(buttonVariants())}>{t("viewProjects")}</a>
+              <a href="#contact" className={cn(buttonVariants({ variant: "outline" }))}>{t("contactMe")}</a>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center gap-4 justify-center md:justify-start">

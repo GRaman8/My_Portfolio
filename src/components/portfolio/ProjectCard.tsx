@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { FaGithub } from "react-icons/fa6";
 import { ExternalLink } from "lucide-react";
@@ -26,6 +27,7 @@ export default function ProjectCard({
   liveUrl,
   index = 0,
 }: ProjectCardProps) {
+  const t = useTranslations("projects");
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -58,12 +60,12 @@ export default function ProjectCard({
         <div className="flex items-center gap-3 pt-1">
           {githubUrl && (
             <Link href={githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <FaGithub className="w-3.5 h-3.5" /> Code
+              <FaGithub className="w-3.5 h-3.5" /> {t("code")}
             </Link>
           )}
           {liveUrl && (
             <Link href={liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <ExternalLink className="w-3.5 h-3.5" /> Live
+              <ExternalLink className="w-3.5 h-3.5" /> {t("live")}
             </Link>
           )}
         </div>

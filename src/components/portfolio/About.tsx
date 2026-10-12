@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { Mail, MapPin } from "lucide-react";
 
@@ -14,6 +15,7 @@ interface AboutProps {
 }
 
 export default function About({ bio, location, githubUrl, linkedinUrl, twitterUrl, email }: AboutProps) {
+  const t = useTranslations("about");
   return (
     <section id="about" className="px-6 py-24">
       <div className="max-w-5xl mx-auto">
@@ -23,7 +25,7 @@ export default function About({ bio, location, githubUrl, linkedinUrl, twitterUr
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">About Me</p>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-4">
               {bio.split("\n\n").map((paragraph, i) => (
@@ -55,7 +57,7 @@ export default function About({ bio, location, githubUrl, linkedinUrl, twitterUr
                 )}
                 {email && (
                   <a href={`mailto:${email}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    <Mail className="w-4 h-4" /> Email
+                    <Mail className="w-4 h-4" /> {t("email")}
                   </a>
                 )}
               </div>

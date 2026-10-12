@@ -120,6 +120,8 @@ W -> working
 
 - [W] Home page loads without errors (check browser console for red errors)
 - [W] All sections render: Hero, About, Skills, Education, Certifications, Experience, Projects, Contact
+- [W] Animated red constellation background shows behind content (moves with the cursor)
+- [ ] Language switcher (globe icon) changes UI text — try English / Deutsch / Español / தமிழ்; reload keeps the choice
 - [W] Navbar smooth-scrolls to sections when clicking links
 - [W] Mobile layout works — open DevTools → toggle device toolbar → check at 375px width
 - [W] Hero animations play on first load (fade-up stagger)
@@ -253,6 +255,7 @@ Log in at `/admin/login` and fill in everything. Suggested order:
 - **Resume**: Host your PDF on GitHub (push the file to a public repo and use the raw URL: `https://raw.githubusercontent.com/username/repo/main/resume.pdf`) or any direct-download URL — Google Drive sharing links (`/view?usp=sharing`) are viewer pages, not direct links, and won't work as a download
 - **Order field**: Lower number = appears first on the portfolio. `0` is the top item
 - **Bio formatting**: Use two newlines between paragraphs — they'll render as separate paragraphs on the About section
+- **Languages**: the visitor-facing language switcher translates the fixed UI (nav, headings, buttons). The content you enter here (bio, descriptions) is shown as written — it is not auto-translated yet. To edit UI translations, see `messages/*.json`
 
 ---
 

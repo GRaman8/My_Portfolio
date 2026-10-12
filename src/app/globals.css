@@ -55,7 +55,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.25 293);
+  --primary: oklch(0.55 0.22 25);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -66,7 +66,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0.25 293);
+  --ring: oklch(0.55 0.22 25);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -90,31 +90,31 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.13 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.606 0.25 293);
+  --primary: oklch(0.606 0.22 25);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.2 0 0);
   --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.22 0.04 293);
+  --accent: oklch(0.22 0.05 25);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.606 0.25 293);
-  --chart-1: oklch(0.606 0.25 293);
+  --ring: oklch(0.606 0.22 25);
+  --chart-1: oklch(0.606 0.22 25);
   --chart-2: oklch(0.708 0 0);
   --chart-3: oklch(0.556 0 0);
   --chart-4: oklch(0.439 0 0);
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.12 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.606 0.25 293);
+  --sidebar-primary: oklch(0.606 0.22 25);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.22 0.04 293);
+  --sidebar-accent: oklch(0.22 0.05 25);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.606 0.25 293);
+  --sidebar-ring: oklch(0.606 0.22 25);
 }
 
 @layer base {
@@ -122,15 +122,19 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
   .dark body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   html {
-    @apply font-sans;
+    @apply bg-background font-sans;
     scroll-behavior: smooth;
     font-size: 106.25%;
+  }
+  /* Tamil glyphs: Geist lacks Tamil coverage, so use Noto Sans Tamil when lang=ta */
+  :lang(ta) {
+    font-family: var(--font-noto-tamil), var(--font-geist-sans), system-ui, sans-serif;
   }
 }

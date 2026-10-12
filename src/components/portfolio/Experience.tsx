@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { formatDateRange } from "@/lib/utils";
 
 interface ExperienceEntry {
@@ -21,6 +22,9 @@ interface ExperienceProps {
 }
 
 export default function Experience({ experiences }: ExperienceProps) {
+  const t = useTranslations("experience");
+  const tDates = useTranslations("dates");
+  const locale = useLocale();
   if (experiences.length === 0) return null;
 
   return (
@@ -33,8 +37,8 @@ export default function Experience({ experiences }: ExperienceProps) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">Career</p>
-          <h2 className="text-3xl font-bold">Experience</h2>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
         </motion.div>
 
         <div className="relative">
@@ -72,7 +76,7 @@ export default function Experience({ experiences }: ExperienceProps) {
                         <p className="text-sm text-primary">{exp.company}</p>
                       </div>
                       <span className="text-xs text-muted-foreground font-mono shrink-0">
-                        {formatDateRange(exp.startDate, exp.endDate, exp.current)}
+                        {formatDateRange(exp.startDate, exp.endDate, exp.current, locale, tDates("present"))}
                       </span>
                     </div>
                     {exp.description && (

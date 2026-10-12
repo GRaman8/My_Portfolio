@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn, buttonVariants } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#education", label: "Education" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-];
+  { href: "#about", key: "about" },
+  { href: "#skills", key: "skills" },
+  { href: "#education", key: "education" },
+  { href: "#certifications", key: "certifications" },
+  { href: "#experience", key: "experience" },
+  { href: "#projects", key: "projects" },
+  { href: "#contact", key: "contact" },
+] as const;
 
 interface NavbarProps {
   resumeUrl?: string | null;
@@ -22,6 +24,7 @@ interface NavbarProps {
 export default function Navbar({ resumeUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations("nav");
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -42,16 +45,17 @@ export default function Navbar({ resumeUrl }: NavbarProps) {
         </a>
 
         <ul className="hidden md:flex items-center gap-6">
-          {navLinks.map(({ href, label }) => (
+          {navLinks.map(({ href, key }) => (
             <li key={href}>
               <a href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {label}
+                {t(key)}
               </a>
             </li>
           ))}
         </ul>
 
         <div className="hidden md:flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           {resumeUrl && (
             <a
@@ -60,12 +64,13 @@ export default function Navbar({ resumeUrl }: NavbarProps) {
               rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
-              Resume
+              {t("resume")}
             </a>
           )}
         </div>
 
         <div className="md:hidden flex items-center gap-1">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             className="text-muted-foreground hover:text-foreground"
@@ -79,17 +84,17 @@ export default function Navbar({ resumeUrl }: NavbarProps) {
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border px-6 pb-4">
           <ul className="flex flex-col gap-3">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, key }) => (
               <li key={href}>
                 <a href={href} className="text-sm text-muted-foreground hover:text-foreground transition-colors" onClick={() => setMobileOpen(false)}>
-                  {label}
+                  {t(key)}
                 </a>
               </li>
             ))}
             {resumeUrl && (
               <li>
                 <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary">
-                  Resume ↗
+                  {t("resume")} ↗
                 </a>
               </li>
             )}

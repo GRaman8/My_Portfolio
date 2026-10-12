@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface Skill {
   id: string;
@@ -11,6 +12,7 @@ interface Skill {
 }
 
 export default function Skills({ skills }: { skills: Skill[] }) {
+  const t = useTranslations("skills");
   if (skills.length === 0) return null;
 
   const grouped = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
@@ -28,8 +30,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">Toolbox</p>
-          <h2 className="text-3xl font-bold">Skills</h2>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
         </motion.div>
 
         <div className="space-y-10">

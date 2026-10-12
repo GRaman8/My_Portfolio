@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "education": "Educación",
+    "certifications": "Certificaciones",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "resume": "Currículum"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "viewProjects": "Ver proyectos",
+    "contactMe": "Contáctame"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "email": "Correo"
+  },
+  "skills": {
+    "eyebrow": "Herramientas",
+    "title": "Habilidades"
+  },
+  "education": {
+    "eyebrow": "Formación",
+    "title": "Educación",
+    "gpa": "Promedio"
+  },
+  "certifications": {
+    "eyebrow": "Credenciales",
+    "title": "Certificaciones",
+    "viewCredential": "Ver credencial",
+    "issued": "Emitido",
+    "expires": "Vence",
+    "noExpiry": "Sin vencimiento",
+    "id": "ID"
+  },
+  "experience": {
+    "eyebrow": "Trayectoria",
+    "title": "Experiencia"
+  },
+  "projects": {
+    "eyebrow": "Trabajo",
+    "title": "Proyectos",
+    "code": "Código",
+    "live": "En vivo"
+  },
+  "contact": {
+    "eyebrow": "Ponte en contacto",
+    "title": "Contacto",
+    "intro": "¿Tienes un proyecto en mente o quieres conversar? Me encantaría saber de ti. Envíame un mensaje y te responderé lo antes posible.",
+    "name": "Nombre",
+    "email": "Correo",
+    "message": "Mensaje",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "messagePlaceholder": "¿Qué tienes en mente?",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "¡Mensaje enviado! Te responderé pronto.",
+    "rateLimit": "Demasiados mensajes. Inténtalo de nuevo más tarde.",
+    "error": "Algo salió mal. Inténtalo de nuevo."
+  },
+  "footer": {
+    "builtWith": "Hecho con Next.js."
+  },
+  "dates": {
+    "present": "Actualidad"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  },
+  "language": {
+    "label": "Cambiar idioma"
+  }
+}

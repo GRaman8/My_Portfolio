@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { formatDate } from "@/lib/utils";
 import { GraduationCap } from "lucide-react";
 
@@ -15,6 +16,9 @@ interface EducationEntry {
 }
 
 export default function Education({ educations }: { educations: EducationEntry[] }) {
+  const t = useTranslations("education");
+  const tDates = useTranslations("dates");
+  const locale = useLocale();
   if (educations.length === 0) return null;
 
   return (
@@ -27,8 +31,8 @@ export default function Education({ educations }: { educations: EducationEntry[]
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">Background</p>
-          <h2 className="text-3xl font-bold">Education</h2>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
         </motion.div>
 
         <ul className="grid sm:grid-cols-2 gap-6">
@@ -54,9 +58,9 @@ export default function Education({ educations }: { educations: EducationEntry[]
               </div>
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="font-mono">
-                  {formatDate(edu.startDate)} — {edu.endDate ? formatDate(edu.endDate) : "Present"}
+                  {formatDate(edu.startDate, locale)} — {edu.endDate ? formatDate(edu.endDate, locale) : tDates("present")}
                 </span>
-                {edu.gpa && <span>GPA: {edu.gpa}</span>}
+                {edu.gpa && <span>{t("gpa")}: {edu.gpa}</span>}
               </div>
             </motion.li>
           ))}

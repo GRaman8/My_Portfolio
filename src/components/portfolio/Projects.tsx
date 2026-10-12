@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import ProjectCard from "./ProjectCard";
 
 interface Project {
@@ -19,6 +20,7 @@ interface ProjectsProps {
 }
 
 export default function Projects({ projects }: ProjectsProps) {
+  const t = useTranslations("projects");
   if (projects.length === 0) return null;
 
   const featured = projects.filter((p) => p.featured);
@@ -35,8 +37,8 @@ export default function Projects({ projects }: ProjectsProps) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">Work</p>
-          <h2 className="text-3xl font-bold">Projects</h2>
+          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-4">{t("eyebrow")}</p>
+          <h2 className="text-3xl font-bold">{t("title")}</h2>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

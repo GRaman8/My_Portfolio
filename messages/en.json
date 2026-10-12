@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "education": "Education",
+    "certifications": "Certifications",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "eyebrow": "About Me",
+    "email": "Email"
+  },
+  "skills": {
+    "eyebrow": "Toolbox",
+    "title": "Skills"
+  },
+  "education": {
+    "eyebrow": "Background",
+    "title": "Education",
+    "gpa": "GPA"
+  },
+  "certifications": {
+    "eyebrow": "Credentials",
+    "title": "Certifications",
+    "viewCredential": "View Credential",
+    "issued": "Issued",
+    "expires": "Expires",
+    "noExpiry": "No expiry",
+    "id": "ID"
+  },
+  "experience": {
+    "eyebrow": "Career",
+    "title": "Experience"
+  },
+  "projects": {
+    "eyebrow": "Work",
+    "title": "Projects",
+    "code": "Code",
+    "live": "Live"
+  },
+  "contact": {
+    "eyebrow": "Get In Touch",
+    "title": "Contact",
+    "intro": "Have a project in mind or want to chat? I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@example.com",
+    "messagePlaceholder": "What's on your mind?",
+    "send": "Send Message",
+    "sending": "Sending…",
+    "success": "Message sent! I'll get back to you soon.",
+    "rateLimit": "Too many messages. Please try again later.",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "builtWith": "Built with Next.js."
+  },
+  "dates": {
+    "present": "Present"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "language": {
+    "label": "Change language"
+  }
+}
